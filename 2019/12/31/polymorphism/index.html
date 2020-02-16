@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    多态
+  
+</title>
+
+<meta name="description" content="wait">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多态">
+<meta property="og:url" content="http://yoursite.com/2019/12/31/polymorphism/index.html">
+<meta property="og:site_name" content="Invoker">
+<meta property="og:description" content="wait">
+<meta property="article:published_time" content="2019-12-31T08:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-14T19:41:20.000Z">
+<meta property="article:tag" content="wait">
+<meta name="twitter:card" content="summary">
+
+
+
+
+  <link rel="icon" href="/favicon.png">
+
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">Invoker</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">Invoker</a></h1>
+    
+    <div class="info">
+      <div class="content">
+        
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <img src="https://avatars2.githubusercontent.com/u/9897252?v=3&amp;s=460">
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="clock">
+    <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+  </div>
+
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Boost/">Boost</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CENTOS/">CENTOS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/File-Management/">File Management</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">Interview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSQL/">NoSQL</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node/">Node</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Socket%E7%BC%96%E7%A8%8B/">Socket编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github-issue/">github issue</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/memory/">memory</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">program</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell-program/">shell program</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wait/">wait</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6/">学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AC%E8%BD%BD%E3%81%AE/">转载の</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86/">运维管理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF/">进程间通讯</a><span class="category-list-count">2</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/" rel="tag">Boost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CENTOS/" rel="tag">CENTOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File-Management/" rel="tag">File Management</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NoSQL/" rel="tag">NoSQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node/" rel="tag">Node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/" rel="tag">Note</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle-Database/" rel="tag">Oracle Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDNote/" rel="tag">SDNote</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket-TCP-IP/" rel="tag">Socket TCP/IP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket-Epoll/" rel="tag">Socket_Epoll</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github-issue/" rel="tag">github issue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memory/" rel="tag">memory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/program/" rel="tag">program</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-program/" rel="tag">shell program</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wait/" rel="tag">wait</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6/" rel="tag">学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD%E3%81%AE/" rel="tag">转载の</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4%E7%AE%A1%E7%90%86/" rel="tag">运维管理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF/" rel="tag">进程间通讯</a><span class="tag-list-count">2</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">48</span></li></ul>
+              </li>
+            
+          
+        </ul>
+
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/huobingli" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="https://facebook.com/bingli.huo" title="FaceBook" target="_blank" rel="noopener">FaceBook</a>
+              </li>
+            
+          
+        </ul>
+
+      
+
+      <!-- del by huobingli on 2020.2.1 -->
+      <!-- <div class="visitor" >
+        <div class="visitortext">
+          Visitors
+        </div>
+        <div class="visitornum" > -->
+          <!-- GoStats JavaScript Based Code -->
+          <!-- <script type="text/javascript" src="http://gostats.cn/js/counter.js"></script>
+          <script type="text/javascript">_gos='monster.gostats.cn';_goa=479834;
+          _got=4;_goi=1;_goz=0;_god='hits';_gol='流量统计';_GoStatsRun();</script>
+          <noscript><a target="_blank" title="流量统计"
+          href="http://gostats.cn"><img alt="流量统计"
+          src="http://monster.gostats.cn/bin/count/a_479834/t_4/i_1/z_0/show_hits/counter.png"
+          style="border-width:0" /></a></noscript> -->
+          <!-- End GoStats JavaScript Based Code -->
+        <!-- </div>
+      </div> -->
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-polymorphism" class="article article-type-post">
+  
+    <h1 class="article-header">
+      多态
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  2019-12-31
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/wait/">wait</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wait/" rel="tag">wait</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+      <p>允许将子类类型的指针赋值给父类类型的指针, 多态性通过虚函数实现</p>
+<p>c++中实现多态有这几种方式: 虚函数，抽象类，覆盖，模板（重载和多态无关）</p>
+<h2 id="运行时多态（动态多态）"><a href="#运行时多态（动态多态）" class="headerlink" title="运行时多态（动态多态）"></a>运行时多态（动态多态）</h2><p>具体引用的对象在运行时才能确定, 绑定工作在程序运行阶段完成的情况称为动态绑定</p>
+<h2 id="编译时多态（静态多态）"><a href="#编译时多态（静态多态）" class="headerlink" title="编译时多态（静态多态）"></a>编译时多态（静态多态）</h2><p>在编译时就可以确定对象使用的形式, 绑定工作在编译链接阶段完成的情况称为静态绑定</p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2020 Invoker - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+
+  
+<link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<script src="/PhotoSwipe/photoswipe.js"></script>
+
+  
+<script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+
+
+<script src="/scripts/main.js"></script>
+
+<!-- mod by huobingli 鼠标特效  -->
+
+<script src="/scripts/love.js"></script>
+
+
+<script>
+    /* 鼠标特效 */
+    // (function () {
+    //     var index = 0;
+    //     $("body").click(function (e) {
+    //         var array = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+    //         var $this = $("<span></span>").text(array[indloveex]);
+    //         index = (index + 1) % array.length;
+    //         var x = e.pageX,
+    //             y = e.pageY;
+    //         $this.css({
+    //             "z-index": 99999,
+    //             "top": y - 25,
+    //             "left": x,
+    //             "position": "absolute",
+    //             "font-size":"initial",
+    //             "font-weight": "bold",
+    //             "font-family": "cursive",
+    //             "color": `rgb(${(255 * Math.random())},${(255 * Math.random())},${(255 * Math.random())})`
+    //         });
+    //         $("body").append($this);
+    //         $this.animate({
+    //             "top": y - 150,
+    //             "opacity": 0
+    //         },
+    //             1200,
+    //             function () {
+    //                 $this.remove();
+    //             });
+    //     });
+    // })(jQuery)
+
+    // onload = function () {
+    //     //var click_cnt = 0;
+    //     var $html = document.getElementsByTagName("html")[0];
+    //     var $body = document.getElementsByTagName("body")[0];
+    //     $html.onclick = function (e) {
+    //         var $elem = document.createElement("b");
+    //         $elem.style.color = "#" + parseInt((172 * Math.random()), 10).toString(16) + parseInt((172 * Math.random()), 10).toString(16) + parseInt((172 * Math.random()), 10).toString(16);
+    //         //"#" + parseInt((172 * Math.random()), 16) + parseInt((172 * Math.random()), 16) + parseInt((172 * Math.random()), 16);
+    //         $elem.style.zIndex = 9999;
+    //         $elem.style.position = "absolute";
+    //         $elem.style.select = "none";
+    //         var x = e.pageX;
+    //         var y = e.pageY;
+    //         $elem.style.left = (x - 10) + "px";
+    //         $elem.style.top = (y - 20) + "px";
+    //         clearInterval(anim);
+    //         var click_cnt = parseInt((100 * Math.random()), 10)
+    //         switch (click_cnt) {
+    //             case 10:
+    //                 $elem.innerText = "OωO";
+    //                 break;
+    //             case 20:
+    //                 $elem.innerText = "(๑•́ ∀ •̀๑)";
+    //                 break;
+    //             case 30:
+    //                 $elem.innerText = "(๑•́ ₃ •̀๑)";
+    //                 break;
+    //             case 40:
+    //                 $elem.innerText = "(๑•̀_•́๑)";
+    //                 break;
+    //             case 50:
+    //                 $elem.innerText = "（￣へ￣）";
+    //                 break;
+    //             case 60:
+    //                 $elem.innerText = "(╯°口°)╯(┴—┴";
+    //                 break;
+    //             case 70:
+    //                 $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+    //                 break;
+    //             case 80:
+    //                 $elem.innerText = "╮(｡>口<｡)╭";
+    //                 break;
+    //             case 90:
+    //                 $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+    //                 break;
+    //             case 100:
+    //                 $elem.innerText = "(ꐦ°᷄д°᷅)";
+    //                 break;
+    //             default:
+    //                 $elem.innerText = "❤";
+    //                 break;
+    //         }
+    //         $elem.style.fontSize = 16 + "px"; //parseInt((Math.random() * 10), 10) + 10 + "px";
+    //         var increase = 0;
+    //         var anim;
+    //         setTimeout(function () {
+    //             anim = setInterval(function () {
+    //                 if (++increase == 150) {
+    //                     clearInterval(anim);
+    //                     $body.removeChild($elem);
+    //                 }
+    //                 $elem.style.top = y - 20 - increase + "px";
+    //                 $elem.style.opacity = (150 - increase) / 120;
+    //             }, 8);
+    //         }, 70);
+    //         $body.appendChild($elem);
+
+    //         //console.log("#" + parseInt((172 * Math.random()), 10).toString(16) + parseInt((172 * Math.random()), 10).toString(16) + parseInt((172 * Math.random()), 10).toString(16));
+    //     };
+    // };
+
+    
+
+</script>
+
+<!-- mod end by huobingli  -->
+</body>
+</html>
