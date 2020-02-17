@@ -8,14 +8,19 @@
 
 <title>
   
-    标签: Note
+    C++ 操作符
   
 </title>
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Invoker">
-<meta property="og:url" content="http://yoursite.com/tags/Note/index.html">
+<meta name="description" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 操作符">
+<meta property="og:url" content="http://yoursite.com/2020/01/02/C++operate/index.html">
 <meta property="og:site_name" content="Invoker">
+<meta property="og:description" content="C++">
+<meta property="article:published_time" content="2020-01-01T18:44:00.000Z">
+<meta property="article:modified_time" content="2020-02-17T15:39:05.938Z">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
@@ -143,170 +148,126 @@
       
         <div style="max-width: 1000px">
       
-          <h1>Note</h1>
-
-
+          <article id="post-C++operate" class="article article-type-post">
+  
+    <h1 class="article-header">
+      C++ 操作符
+    </h1>
   
   
-    <div class="post-list">
-  
 
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2016/05/09/SQLite/" >
-  Android Note(2)
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2016/05/09/SQLite/"><span class="article-date">
-  2016-05-09
+  <div class="article-info">
+    <span class="article-date">
+  2020-01-02
 </span>
-</a>
-        
+
+    
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Note/">Note</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
 	</span>
 
 
-        
+    
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/" rel="tag">Note</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
 	</span>
 
 
-      </div>
-      <div class="article-entry">
-        
-          <h3 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h3><p>不用androidAPI</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SQLiteDatabase db &#x3D; oh.getWritableDatabase();  </span><br><span class="line"></span><br><span class="line">insert()  </span><br><span class="line">db.execSQL(sql语句, sql语句中的values值);</span><br><span class="line"></span><br><span class="line">delete()</span><br><span class="line">db.execSQL(sql语句，sql语句中where查询条件);</span><br><span class="line"></span><br><span class="line">update()</span><br><span class="line">db.execSQL(sql语句，sql语句中where查询条件);</span><br><span class="line"></span><br><span class="line">select()</span><br><span class="line">db.rawQuery(sql语句,sql语句中where查询条件);</span><br></pre></td></tr></table></figure>
-
-<p>使用AndroidAPI</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">insertApi()</span><br><span class="line">db.insert(表名, ,键值数组)</span><br><span class="line"></span><br><span class="line">deleteApi()</span><br><span class="line">db.delete(表名, where条件，where条件键值)</span><br><span class="line"></span><br><span class="line">updateApi()</span><br><span class="line">db.update(表名，键值数组，where条件，where条件键值)</span><br><span class="line"></span><br><span class="line">selectApi()</span><br><span class="line">&#x2F;&#x2F;第一个表名</span><br><span class="line">&#x2F;&#x2F;第三个查询字段</span><br><span class="line">&#x2F;&#x2F;第四个查询where条件</span><br><span class="line">&#x2F;&#x2F;第六个表示从该条开始查询</span><br><span class="line">&#x2F;&#x2F;第七个表示查询条数</span><br><span class="line">db.query(&quot;person&quot;, null, null, null, null, null, null);</span><br></pre></td></tr></table></figure>
-
-        
-      </div>
-    </div>
-
-  
-    </div>
-  
-
-  
-  
-    <div class="post-list">
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2016/05/07/android_button_click/" >
-  Android Note(1)
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2016/05/07/android_button_click/"><span class="article-date">
-  2016-05-07
-</span>
-</a>
-        
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Note/">Note</a></li></ul>
-	</span>
-
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/" rel="tag">Note</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <h3 id="按钮点击事件"><a href="#按钮点击事件" class="headerlink" title="按钮点击事件"></a>按钮点击事件</h3><p>1、使用内部类<br>2、使用匿名内部类<br>3、实现onclick接口<br>4、button 设置属性onclick,并在类中定义一个相同名称的public方法，需要传入一个view对象，view对象是出发方法执行的组建对象，多个对象可以使用通过方法，通过资源id来判断</p>
-<h3 id="内部存储和外部存储"><a href="#内部存储和外部存储" class="headerlink" title="内部存储和外部存储"></a>内部存储和外部存储</h3><p>内部存储 ：getFilesDir();</p>
-<p>外部存储 ：Environment.getExternalStorageDirectory();<br>必须检查外部存储是否存在 ：Environment.getExternalStorageState();</p>
-<p>SD卡状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_REMOVED ：SD卡移除（SD卡不存在）   </span><br><span class="line">MEDIA_UNMOUNTED : SD卡未挂载（SD卡存在，但未挂载）   </span><br><span class="line">MEDIA_CHECKING : SD卡正在遍历   </span><br><span class="line">MEDIA_MOUNTED : SD卡可读</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件访问权限"><a href="#文件访问权限" class="headerlink" title="文件访问权限"></a>文件访问权限</h3><p>drwxrwxrwx   </p>
+  </div>
+  <div class="article-entry">
+      <h2 id="一元操作符"><a href="#一元操作符" class="headerlink" title="一元操作符"></a>一元操作符</h2><p>作用在一个操作数上的操作符 取地址操作符（&amp;）和解引用操作符（*）</p>
+<h2 id="二元操作符"><a href="#二元操作符" class="headerlink" title="二元操作符"></a>二元操作符</h2><p>作用在两个操作数上的操作符 加法操作符（+）和减法操作符（-）</p>
+<h2 id="三元操作符"><a href="#三元操作符" class="headerlink" title="三元操作符"></a>三元操作符</h2><p>作用在三个操作数上的操作符</p>
+<h2 id="操作符的优先级"><a href="#操作符的优先级" class="headerlink" title="操作符的优先级"></a>操作符的优先级</h2><h2 id="位操作"><a href="#位操作" class="headerlink" title="位操作"></a>位操作</h2><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>~</td>
+<td>位求反</td>
+<td>~expr</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移</td>
+<td>expr1 &lt;&lt; expr2</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移</td>
+<td>expr1 &gt;&gt; expr2</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>位与</td>
+<td>expr1 &amp; expr2</td>
+</tr>
+<tr>
+<td>^</td>
+<td>位异或</td>
+<td>expr1 ^ expr2</td>
+</tr>
+<tr>
+<td>|</td>
+<td>位或</td>
+<td>expr1</td>
+</tr>
+</tbody></table>
+<p>后置操作符 前置操作符</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><h3 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h3><ul>
+<li><p>指针转换</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> na[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span>* pi = na;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>第一个字母<ul>
-<li>d表示文件夹</li>
-<li>-表示文件</li>
+<li>任意数据类型的指针都可以转换为void* 类型</li>
+<li>整型数值常量0可以转换为任意指针类型</li>
 </ul>
 </li>
-<li>第一组rwx 描述文件拥有者（owner）的权限<ul>
-<li>r读</li>
-<li>w写</li>
-<li>x可执行</li>
-</ul>
+<li><p>转换为bool类型</p>
 </li>
-<li>第二组rwx：与文件拥有者同一用户组的用户（grouper）</li>
-<li>第三组rwx：其他用户（other）的权限</li>
+<li><p>算术类型与bool类型的转换</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">int</span> nval = b;  <span class="comment">// nval = 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> dbval = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">bool</span> b2 = pi; <span class="comment">// b2 = true;</span></span><br><span class="line">dbval = <span class="literal">false</span> <span class="comment">// dbval = 0</span></span><br></pre></td></tr></table></figure></li>
+<li><p>转换与枚举类型</p>
+</li>
+<li><p>转换为const对象</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ni = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;j = i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = &amp;ni;</span><br></pre></td></tr></table></figure></li>
+<li><p>由标准库类型定义的转换</p>
+</li>
+</ul>
+<h3 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h3><ul>
+<li>dynamic_cast</li>
+<li>const_cast<br>转换掉表达式的const性质<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* pc_str;</span><br><span class="line"><span class="keyword">char</span>* pc = string_copy(<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(pc_str));</span><br></pre></td></tr></table></figure></li>
+<li>static_cast<br>编译器隐式执行的任何类型转换都可以有static_cast显式完成<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d = <span class="number">100.0</span>;</span><br><span class="line"><span class="keyword">char</span> ch = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(d);</span><br></pre></td></tr></table></figure></li>
+<li>reinterpret_cast</li>
 </ul>
 
-        
-      </div>
-    </div>
-
-  
-    </div>
-  
-
-  
-  
-    <div class="post-list">
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2016/03/08/SPMNote_1/" >
-  Software Project Management Note(1)
-</a>
-
-      </h3>
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="署名-相同方式共享">
+      <img src="/images/cc/cc.png">
       
-
-      <div class="article-info">
-        <a href="/2016/03/08/SPMNote_1/"><span class="article-date">
-  2016-03-08
-</span>
-</a>
+          <img src="/images/cc/by.png">
         
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Note/">Note</a></li></ul>
-	</span>
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        本作品采用知识共享 署名-相同方式共享 4.0 国际许可协议进行许可。
+      </span>
+    </a>
+  </div>
 
 
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/" rel="tag">Note</a></li></ul>
-	</span>
+    
+
+  </footer>
+</article>
 
 
-      </div>
-      <div class="article-entry">
-        
-          <h2 id="软件项目管理笔记"><a href="#软件项目管理笔记" class="headerlink" title="软件项目管理笔记"></a>软件项目管理笔记</h2><h3 id="项目："><a href="#项目：" class="headerlink" title="项目："></a>项目：</h3><p>为了创建一个唯一的产品或提供一个唯一的服务而进行的临时性努力。</p>
-<h3 id="项目特征："><a href="#项目特征：" class="headerlink" title="项目特征："></a>项目特征：</h3><p>1、有明确的目标<br>2、项目之间的活动具有相关性<br>3、限定的周期<br>4、有独特性<br>5、资源成本的约束性<br>6、项目的不确定性</p>
-<h3 id="软件项目的特殊性："><a href="#软件项目的特殊性：" class="headerlink" title="软件项目的特殊性："></a>软件项目的特殊性：</h3><p>1、逻辑实体<br>2、相互作用的系统<br>3、变更<br>4、渐进明细</p>
-<h3 id="项目管理："><a href="#项目管理：" class="headerlink" title="项目管理："></a>项目管理：</h3><p>项目管理是一系列的伴随着项目的进行而进行的，目的是为了确保项目能够达到期望结果的一系列管理。</p>
-<h3 id="软件开发项目管理："><a href="#软件开发项目管理：" class="headerlink" title="软件开发项目管理："></a>软件开发项目管理：</h3><p>软件项目管理师为了使软件项目能够按照成本、进度、质量顺利完成，而对成本、人员、进度、质量、风险等进行分析和管理的活动。</p>
-<h3 id="项目管理的5要素："><a href="#项目管理的5要素：" class="headerlink" title="项目管理的5要素："></a>项目管理的5要素：</h3><p>1、技术<br>2、方法<br>3、团队建设<br>4、信息<br>5、沟通</p>
-
-        
-      </div>
-    </div>
-
-  
-    </div>
-  
 
 
 
