@@ -394,7 +394,17 @@
 </li>
 </ul>
 <p>关系操作符（&lt;、&lt;=、 &gt; 、 &gt;=）只适用于vector 和deque容器，因为这有这两类容器为其元素提供快速、随机访问</p>
-
+<h2 id="容器的选用"><a href="#容器的选用" class="headerlink" title="容器的选用"></a>容器的选用</h2><ul>
+<li>插入删除的代价</li>
+<li>随机访问的代价</li>
+</ul>
+<h2 id="容器适配器"><a href="#容器适配器" class="headerlink" title="容器适配器"></a>容器适配器</h2><p>对容器的一种再封装,不同的容器适配器提供不同的函数，使容器的功能得到全新的特定的扩展。</p>
+<ul>
+<li>stack 栈</li>
+<li>queue 队列</li>
+<li>priority_queue 优先队列</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vc; <span class="comment">// vc : 1,2,3,4,5,6</span></span><br><span class="line"><span class="comment">// 顺序输出  1,2,3,4,5,6</span></span><br><span class="line"><span class="function"><span class="built_in">stack</span>&lt;<span class="keyword">int</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">svc</span><span class="params">(vc)</span></span>; </span><br><span class="line"><span class="comment">// 一个个pop弹出</span></span><br><span class="line"><span class="comment">// 输出 6,5,4,3,2,1</span></span><br></pre></td></tr></table></figure>
         
       </div>
     </div>
