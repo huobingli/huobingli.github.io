@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Invoker">
 <meta property="og:description" content="C++">
 <meta property="article:published_time" content="2020-01-01T18:44:00.000Z">
-<meta property="article:modified_time" content="2020-02-18T16:57:51.941Z">
+<meta property="article:modified_time" content="2020-02-19T15:47:53.750Z">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
@@ -215,18 +215,72 @@
 <td>有优先级管理的队列</td>
 </tr>
 </tbody></table>
-<h2 id="迭代器运算"><a href="#迭代器运算" class="headerlink" title="迭代器运算"></a>迭代器运算</h2><p>所有容器都可以的运算<br>运算 | 作用</p>
-<ul>
-<li>| -</li>
-</ul>
-<p><em>iter | 返回迭代器iter所指向的元素的引用<br>iter-&gt;mem | 对iter进行解引用，获取名为mem的成员。等效于(</em>iter).mem<br>++iter iter++ | iter加1，指向容器下一个元素<br>–iter iter– | iter减1，指向容器前一个元素<br>iter1 == iter2 | 比较两个迭代器是否相同<br>iter1 != iter2 | 比较两个迭代器是否不同</p>
-<p>vector 和deque 额外的运算<br>运算 | 作用</p>
-<ul>
-<li>| -<br>iter + n | 迭代器上加整数值n，将产生指向容器中前面的第n个元素的迭代器<br>iter - n | 迭代器上减整数值n，将产生指向容器中后面的第n个元素的迭代器<br>iter1 += iter2 | 加法复合赋值运算，结果赋值给iter1<br>iter1 -= iter2 | 减法复合赋值运算，结果赋值给iter1<br>iter1 - iter2 | 迭代器减法<blockquote>
-<p>, &gt;=, &lt; , &lt;= | 迭代器关系操作符</p>
-</blockquote>
-</li>
-</ul>
+<h2 id="迭代器运算"><a href="#迭代器运算" class="headerlink" title="迭代器运算"></a>迭代器运算</h2><p>所有容器都可以的运算</p>
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*iter</td>
+<td>返回迭代器iter所指向的元素的引用</td>
+</tr>
+<tr>
+<td>iter-&gt;mem</td>
+<td>对iter进行解引用，获取名为mem的成员。等效于(*iter).mem</td>
+</tr>
+<tr>
+<td>++iter iter++</td>
+<td>iter加1，指向容器下一个元素</td>
+</tr>
+<tr>
+<td>–iter iter–</td>
+<td>iter减1，指向容器前一个元素</td>
+</tr>
+<tr>
+<td>iter1 == iter2</td>
+<td>比较两个迭代器是否相同</td>
+</tr>
+<tr>
+<td>iter1 != iter2</td>
+<td>比较两个迭代器是否不同</td>
+</tr>
+</tbody></table>
+<p>vector 和deque 额外的运算</p>
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iter + n</td>
+<td>迭代器上加整数值n，将产生指向容器中前面的第n个元素的迭代器</td>
+</tr>
+<tr>
+<td>iter - n</td>
+<td>迭代器上减整数值n，将产生指向容器中后面的第n个元素的迭代器</td>
+</tr>
+<tr>
+<td>iter1 += iter2</td>
+<td>加法复合赋值运算，结果赋值给iter1</td>
+</tr>
+<tr>
+<td>iter1 -= iter2</td>
+<td>减法复合赋值运算，结果赋值给iter1</td>
+</tr>
+<tr>
+<td>iter1 - iter2</td>
+<td>迭代器减法</td>
+</tr>
+<tr>
+<td>&gt;, &gt;=, &lt; , &lt;=</td>
+<td>迭代器关系操作符</td>
+</tr>
+</tbody></table>
 <p>关系操作符（&lt;、&lt;=、 &gt; 、 &gt;=）只适用于vector 和deque容器，因为这有这两类容器为其元素提供快速、随机访问</p>
 <h2 id="容器的选用"><a href="#容器的选用" class="headerlink" title="容器的选用"></a>容器的选用</h2><ul>
 <li>插入删除的代价</li>
