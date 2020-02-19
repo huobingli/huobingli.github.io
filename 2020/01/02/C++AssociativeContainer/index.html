@@ -8,19 +8,19 @@
 
 <title>
   
-    动态规划
+    C++ 关联容器
   
 </title>
 
-<meta name="description" content="数据结构">
+<meta name="description" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态规划">
-<meta property="og:url" content="http://yoursite.com/2019/12/31/DynamicProgram/index.html">
+<meta property="og:title" content="C++ 关联容器">
+<meta property="og:url" content="http://yoursite.com/2020/01/02/C++AssociativeContainer/index.html">
 <meta property="og:site_name" content="Invoker">
-<meta property="og:description" content="数据结构">
-<meta property="article:published_time" content="2019-12-31T08:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-14T19:41:20.000Z">
-<meta property="article:tag" content="数据结构">
+<meta property="og:description" content="C++">
+<meta property="article:published_time" content="2020-01-01T18:44:00.000Z">
+<meta property="article:modified_time" content="2020-02-19T15:45:40.585Z">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
@@ -148,34 +148,147 @@
       
         <div style="max-width: 1000px">
       
-          <article id="post-DynamicProgram" class="article article-type-post">
+          <article id="post-C++AssociativeContainer" class="article article-type-post">
   
     <h1 class="article-header">
-      动态规划
+      C++ 关联容器
     </h1>
   
   
 
   <div class="article-info">
     <span class="article-date">
-  2019-12-31
+  2020-01-02
 </span>
 
     
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
 	</span>
 
 
     
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
 	</span>
 
 
   </div>
   <div class="article-entry">
-      <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1>
+      <h2 id="pair类型"><a href="#pair类型" class="headerlink" title="pair类型"></a>pair类型</h2><p>定义在utility头文件中</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pair&lt;T1, T2&gt; p1</td>
+<td>创建一个空的pair对象, 元素为T1和T2的类型</td>
+</tr>
+<tr>
+<td>pair&lt;T1, T2&gt; p1(v1, v2)</td>
+<td>创建一个pair对象, 元素为T1和T2的类型, first初始化v1, second初始化v2</td>
+</tr>
+<tr>
+<td>make_pair(v1, v2)</td>
+<td>v1 v2值创建一个新的pair对象</td>
+</tr>
+<tr>
+<td>p1 &lt; p2</td>
+<td>pair对象小于运算</td>
+</tr>
+<tr>
+<td>p1 == p2</td>
+<td>pair对象的first second 成员都相等</td>
+</tr>
+<tr>
+<td>p.first</td>
+<td>返回first</td>
+</tr>
+<tr>
+<td>p.second</td>
+<td>返回second</td>
+</tr>
+</tbody></table>
+<h2 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h2><p>根据键排列元素</p>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>key-value集合</p>
+<ul>
+<li>key 为const</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>构造</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map&lt;k, v&gt; m;</td>
+<td>创建一个空map对象m, 键为k 值为v</td>
+</tr>
+<tr>
+<td>map&lt;k, v&gt; m(m2);</td>
+<td>创建副本m2, m2和m键和值类型必须相同</td>
+</tr>
+<tr>
+<td>map&lt;k, v&gt; m(b, e);</td>
+<td>b,e 为迭代器， 创建的m存储迭代器b到e的所有元素</td>
+</tr>
+</tbody></table>
+<h3 id="下标访问vector和map的区别"><a href="#下标访问vector和map的区别" class="headerlink" title="下标访问vector和map的区别"></a>下标访问vector和map的区别</h3><p>访问map中不存在的元素会导致map容器中增加一个新元素。</p>
+<table>
+<thead>
+<tr>
+<th>查询操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map.count(k)</td>
+<td>返回m中k出现的次数, 0或者1, 只表示是否存在</td>
+</tr>
+<tr>
+<td>map.find(k)</td>
+<td>存在k索引的元素，返回对应的迭代器，否则返回end</td>
+</tr>
+</tbody></table>
+<p>想要读取但不增加元素, 可以先find再读取</p>
+<p>删除操作 | 说明<br>map.erase(k) | 删除键为k的元素<br>map.erase(p) | 删除迭代器p指向的元素，p必须是map中存在的元素，且不为end<br>map.erase(b,e) | 删除一段范围元素</p>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>key的集合</p>
+<ul>
+<li>不支持下标操作</li>
+<li>set容器存储的键唯一，且不能修改</li>
+<li>key为const</li>
+</ul>
+<p>和map一样的find、count 操作</p>
+<h2 id="multimap-multiset"><a href="#multimap-multiset" class="headerlink" title="multimap multiset"></a>multimap multiset</h2><p>支持一个键对应多个实例</p>
+<ul>
+<li><B>multimap 因为对应多个相同的键, 不支持下标操作</B></li>
+</ul>
+<p>find count</p>
+<table>
+<thead>
+<tr>
+<th>更多操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>m.lower_bound(k)</td>
+<td>返回一个迭代器, 指向键不小于k的第一个元素</td>
+</tr>
+<tr>
+<td>m.upper_bound(k)</td>
+<td>返回一个迭代器, 指向键大于k的第一个元素</td>
+</tr>
+<tr>
+<td>m.equal_range(k)</td>
+<td>返回一个迭代器的pair对象 ，first等价于m.lower_bound(k), second等价于m.upper_bound(k)</td>
+</tr>
+</tbody></table>
+
   </div>
   <footer class="article-footer">
     
