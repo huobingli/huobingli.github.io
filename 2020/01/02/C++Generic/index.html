@@ -8,19 +8,19 @@
 
 <title>
   
-    gdb调试
+    C++ 泛型
   
 </title>
 
-<meta name="description" content="linux">
+<meta name="description" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gdb调试">
-<meta property="og:url" content="http://yoursite.com/2016/12/07/gdb/index.html">
+<meta property="og:title" content="C++ 泛型">
+<meta property="og:url" content="http://yoursite.com/2020/01/02/C++Generic/index.html">
 <meta property="og:site_name" content="Invoker">
-<meta property="og:description" content="linux">
-<meta property="article:published_time" content="2016-12-06T18:22:51.000Z">
-<meta property="article:modified_time" content="2020-02-14T19:41:20.000Z">
-<meta property="article:tag" content="linux">
+<meta property="og:description" content="C++">
+<meta property="article:published_time" content="2020-01-01T18:44:00.000Z">
+<meta property="article:modified_time" content="2020-02-19T17:46:06.932Z">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
@@ -148,111 +148,47 @@
       
         <div style="max-width: 1000px">
       
-          <article id="post-gdb" class="article article-type-post">
+          <article id="post-C++Generic" class="article article-type-post">
   
     <h1 class="article-header">
-      gdb调试
+      C++ 泛型
     </h1>
   
   
 
   <div class="article-info">
     <span class="article-date">
-  2016-12-07
+  2020-01-02
 </span>
 
     
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
 	</span>
 
 
     
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
 	</span>
 
 
   </div>
   <div class="article-entry">
-      <h1 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h1><p>调试准备，生成.o文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g test.cpp -o test</span><br></pre></td></tr></table></figure>
+      <h2 id="泛型算法"><a href="#泛型算法" class="headerlink" title="泛型算法"></a>泛型算法</h2><p>标准库操作不同容器的函数算法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-<p>启动gdb调试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb test</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>list（或l）</td>
-<td>列出源代码，接着上次的位置往下列，每次列10行</td>
-</tr>
-<tr>
-<td>backtrace（或bt）</td>
-<td>查看各级函数调用及参数 ， 函数堆栈</td>
-</tr>
-<tr>
-<td>finish</td>
-<td>连续运行到当前函数返回为止，然后停下来等待命令</td>
-</tr>
-<tr>
-<td>frame（或f）</td>
-<td>帧编号    选择栈帧</td>
-</tr>
-<tr>
-<td>info（或i）</td>
-<td>locals    查看当前栈帧局部变量的值</td>
-</tr>
-<tr>
-<td>list 行号</td>
-<td>列出从第几行开始的源代码</td>
-</tr>
-<tr>
-<td>list 函数名</td>
-<td>列出某个函数的源代码</td>
-</tr>
-<tr>
-<td>next（或n）</td>
-<td>执行下一行语句</td>
-</tr>
-<tr>
-<td>print（或p）+ 变量</td>
-<td>打印表达式的值，通过表达式可以修改变量的值或者调用函数</td>
-</tr>
-<tr>
-<td>quit（或q）</td>
-<td>退出gdb调试环境</td>
-</tr>
-<tr>
-<td>set var</td>
-<td>修改变量的值</td>
-</tr>
-<tr>
-<td>start</td>
-<td>开始执行程序，停在main函数第一行语句前面等待命令</td>
-</tr>
-<tr>
-<td>step（或s）</td>
-<td>执行下一行语句，如果有函数调用则进入到函数中</td>
-</tr>
-<tr>
-<td>continue(或c)</td>
-<td>继续运行程序</td>
-</tr>
-<tr>
-<td>break + 行号</td>
-<td>在某一行设置断点</td>
-</tr>
-<tr>
-<td>回车键</td>
-<td>表示重复上一次命令</td>
-</tr>
-</tbody></table>
+<p>算法直接修改容器大小，需要增加或删除元素必须使用容器操作</p>
+<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p>全部排序<br>局部排序</p>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><ul>
+<li>插入迭代器: 与容器绑定，实现容器插入元素操作</li>
+<li>iostream迭代器: 与输入输出流绑定，用于迭代便利所关联的IO流</li>
+<li>反向迭代器: 反向遍历</li>
+</ul>
+<p>插入迭代器</p>
+<p>back_inserter 创建爱你使用push_back实现插入的迭代器<br>front_inserter 使用push_front实现插入<br>inserter 使用insert实现插入操作</p>
+<p>iostream迭代器</p>
+<p>反向迭代器<br>一种反向遍历容器的迭代器，也就是从最后一个元素到第一个元素遍历容器。对于反向迭代器，++操作访问前一个元素，–访问下一个元素</p>
 
   </div>
   <footer class="article-footer">
