@@ -8,14 +8,19 @@
 
 <title>
   
-    Category: shell program
+    explicit 关键字
   
 </title>
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Invoker">
-<meta property="og:url" content="http://yoursite.com/categories/shell-program/index.html">
+<meta name="description" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="explicit 关键字">
+<meta property="og:url" content="http://yoursite.com/2020/01/04/C++KeyWord/index.html">
 <meta property="og:site_name" content="Invoker">
+<meta property="og:description" content="C++">
+<meta property="article:published_time" content="2020-01-04T08:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-20T15:25:57.950Z">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
@@ -143,64 +148,65 @@
       
         <div style="max-width: 1000px">
       
-          <h1>shell program</h1>
-
-
+          <article id="post-C++KeyWord" class="article article-type-post">
+  
+    <h1 class="article-header">
+      explicit 关键字
+    </h1>
   
   
-    <div class="post-list">
-  
 
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2016/08/15/shell_1/" >
-  shell program
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2016/08/15/shell_1/"><span class="article-date">
-  2016-08-15
+  <div class="article-info">
+    <span class="article-date">
+  2020-01-04
 </span>
-</a>
-        
+
+    
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/shell-program/">shell program</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
 	</span>
 
 
-        
+    
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell-program/" rel="tag">shell program</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
 	</span>
 
 
-      </div>
-      <div class="article-entry">
+  </div>
+  <div class="article-entry">
+      <h2 id="explicit-关键字"><a href="#explicit-关键字" class="headerlink" title="explicit 关键字"></a>explicit 关键字</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Test1(<span class="keyword">int</span> n)</span><br><span class="line">    &#123;</span><br><span class="line">        num=n;</span><br><span class="line">    &#125;<span class="comment">//普通构造函数</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Test2</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        num=n;</span><br><span class="line">    &#125;<span class="comment">//explicit(显式)构造函数</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Test1 t1=<span class="number">12</span>;<span class="comment">//隐式调用其构造函数,成功</span></span><br><span class="line">    Test2 t2=<span class="number">12</span>;<span class="comment">//编译错误,不能隐式调用其构造函数</span></span><br><span class="line">    <span class="function">Test2 <span class="title">t2</span><span class="params">(<span class="number">12</span>)</span></span>;<span class="comment">//显式调用成功</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Test1的构造函数带了一个int型的参数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test1 t1 = <span class="number">12</span>;  <span class="comment">// 调用成功</span></span><br></pre></td></tr></table></figure>
+
+
+<p>Test2的构造函数被声明为explicit(显式), 表示不能通过隐式转换来调用这个构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test2 t2 = <span class="number">12</span>;  <span class="comment">//调用失败</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
         
-          <h3 id="shell-编程"><a href="#shell-编程" class="headerlink" title="shell 编程"></a>shell 编程</h3><p>shell脚本需要调用其它语言需要加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-<p>开头加上这句话</p>
-<h4 id="echo-输出"><a href="#echo-输出" class="headerlink" title="echo 输出"></a>echo 输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\a 警告音</span><br><span class="line">\b 退格键</span><br><span class="line">\n 换行</span><br><span class="line">\r 回车键</span><br><span class="line">\t 制表符 TAB键</span><br><span class="line">\v 垂直制表符</span><br><span class="line">\0nnn 按照八进制ASCII码表输出字符，其中0为数字零，nnn为三位八进制数</span><br><span class="line">\xhh  按照十六进制ASCII码表输出字符，其中hh是两位十六进制数</span><br></pre></td></tr></table></figure>
-<p>echo -n 不换行输出<br>echo -e 处理特殊字符   </p>
-<p>echo开启颜色显示  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#30m &#x3D; 黑色， #31m &#x3D; 红色， #32m &#x3D; 绿色， #33m &#x3D; 黄色</span><br><span class="line">#34m &#x3D; 蓝色， #35m &#x3D; 洋红， #36m &#x3D; 青色， #37m &#x3D; 白色</span><br><span class="line"></span><br><span class="line">格式：开头\e[1;(颜色代码m)    结尾\e[0m  </span><br><span class="line">举个例子： echo &quot;\e[1;31m  hello echo \e[0m&quot;</span><br></pre></td></tr></table></figure>
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
 
-<h4 id="脚本执行"><a href="#脚本执行" class="headerlink" title="脚本执行"></a>脚本执行</h4><p>1、可以通过赋予执行权限，直接运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> chmod 755 脚本名.sh</span><br><span class="line">.&#x2F;脚本名.sh</span><br></pre></td></tr></table></figure>
 
-<p>2、通过bash执行脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash 脚本名.sh</span><br></pre></td></tr></table></figure>
+    
 
-        
-      </div>
-    </div>
+  </footer>
+</article>
 
-  
-    </div>
-  
+
 
 
 
