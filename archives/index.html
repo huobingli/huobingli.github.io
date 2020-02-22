@@ -806,7 +806,128 @@
 <td>找序列中找给定val的出现次数，返回第一个匹配项, 满足binaryPred条件</td>
 </tr>
 </tbody></table>
-
+<h3 id="其他只读算法"><a href="#其他只读算法" class="headerlink" title="其他只读算法"></a>其他只读算法</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>for_each(beg, end, f)</td>
+<td></td>
+</tr>
+<tr>
+<td>mismatch(beg1, end1, beg2)</td>
+<td>返回不匹配的迭代器 全部匹配返回end1</td>
+</tr>
+<tr>
+<td>mismatch(beg1, end1, beg2, binaryPred)</td>
+<td>返回不满足binaryPred条件的迭代器 全部匹配返回end1</td>
+</tr>
+<tr>
+<td>equal(beg1, end1, beg2)</td>
+<td>判断两个序列是否相等，相等返回true</td>
+</tr>
+<tr>
+<td>equal(beg1, end1, beg2, binaryPred)</td>
+<td>判断两个序列是否满足binaryPred条件，相等返回true</td>
+</tr>
+</tbody></table>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>序列有序</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lower_bound(beg, end, val)</td>
+<td>在(beg,end)中查找不小于val的第一个元素</td>
+</tr>
+<tr>
+<td>lower_bound(beg, end, val, comp)</td>
+<td>在(beg,end)中查找不小于val的第一个元素，comp用于指定序列排序所使用的比较。</td>
+</tr>
+<tr>
+<td>upper_bound(beg, end, val)</td>
+<td>在(beg,end)中查找大于val的第一个元素</td>
+</tr>
+<tr>
+<td>upper_bound(beg, end, val, comp)</td>
+<td>在(beg,end)中查找大于val的第一个元素，comp用于指定序列排序所使用的比较</td>
+</tr>
+<tr>
+<td>equal_range(beg, end, val)</td>
+<td>找出有序序列中所有和val相等的元素</td>
+</tr>
+<tr>
+<td>equal_range(beg, end, val, comp)</td>
+<td>找出有序序列中所有和val相等的元素，comp用于指定序列排序所使用的比较</td>
+</tr>
+<tr>
+<td>binary_search(beg, end, val)</td>
+<td>序列是否包含与val相等的元素</td>
+</tr>
+<tr>
+<td>binary_search(beg, end, val, comp)</td>
+<td>序列是否包含与val相等的元素，comp用于指定序列排序所使用的比较</td>
+</tr>
+</tbody></table>
+<h3 id="容器元素的算法"><a href="#容器元素的算法" class="headerlink" title="容器元素的算法"></a>容器元素的算法</h3><h4 id="1、只写元素不读元素算法"><a href="#1、只写元素不读元素算法" class="headerlink" title="1、只写元素不读元素算法"></a>1、只写元素不读元素算法</h4><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fill_n(dest, cnt, val)</td>
+<td>以给定的迭代器为起始位置，为cnt个数的元素设置值val</td>
+</tr>
+<tr>
+<td>generate_n(dest, cnt, Gen)</td>
+<td>以给定的迭代器为起始位置，为cnt个数的元素设置由Gen函数的返回值</td>
+</tr>
+</tbody></table>
+<h4 id="2、使用输入迭代器写入元素的算法"><a href="#2、使用输入迭代器写入元素的算法" class="headerlink" title="2、使用输入迭代器写入元素的算法"></a>2、使用输入迭代器写入元素的算法</h4><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>copy(beg, end, dest)</td>
+<td>(beg,end) 复制到迭代器dest开始的序列</td>
+</tr>
+<tr>
+<td>transfrom(beg, end, dest, unaryOp)</td>
+<td>(beg,end) 通过unaryOp操作后，输入到迭代器dest开始的序列</td>
+</tr>
+<tr>
+<td>transfrom(beg, end, beg2, dest, unaryOp)</td>
+<td>(beg,end) 通过unaryOp操作后，输入到迭代器dest开始的序列</td>
+</tr>
+<tr>
+<td>replace_copy(beg, end, dest, old_val, new_val)</td>
+<td>(beg,end) 输入到迭代器dest开始的序列,oldval替换为new_val</td>
+</tr>
+<tr>
+<td>replace_copy_if(beg, end, dest, unaryPred, new_val)</td>
+<td>(beg,end) 输入到迭代器dest开始的序列,符合unaryPred条件的元素替换为new_val</td>
+</tr>
+<tr>
+<td>merge(beg1, end1, beg2, end2, dest)</td>
+<td>合并两个有序序列后写入到dest</td>
+</tr>
+<tr>
+<td>merge(beg1, end1, beg2, end2, dest, comp)</td>
+<td>合并两个有序序列后写入到dest，comp用于指定序列排序所使用的比较</td>
+</tr>
+</tbody></table>
+<h4 id="3、使用前"><a href="#3、使用前" class="headerlink" title="3、使用前"></a>3、使用前</h4>
         
       </div>
     </div>
