@@ -8,14 +8,19 @@
 
 <title>
   
-    Tag: Redis
+    C++ 11 auto
   
 </title>
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Invoker">
-<meta property="og:url" content="http://yoursite.com/tags/Redis/index.html">
+<meta name="description" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 11 auto">
+<meta property="og:url" content="http://yoursite.com/2020/01/04/C++auto/index.html">
 <meta property="og:site_name" content="Invoker">
+<meta property="og:description" content="C++">
+<meta property="article:published_time" content="2020-01-04T08:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-26T18:03:11.317Z">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
@@ -143,55 +148,79 @@
       
         <div style="max-width: 1000px">
       
-          <h1>Redis</h1>
-
-
+          <article id="post-C++auto" class="article article-type-post">
+  
+    <h1 class="article-header">
+      C++ 11 auto
+    </h1>
   
   
-    <div class="post-list">
-  
 
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2019/12/31/redis/" >
-  Redis 数据库
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2019/12/31/redis/"><span class="article-date">
-  2019-12-31
+  <div class="article-info">
+    <span class="article-date">
+  2020-01-04
 </span>
-</a>
-        
+
+    
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
 	</span>
 
 
-        
+    
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
 	</span>
 
 
-      </div>
-      <div class="article-entry">
-        
-          <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>Redis 是一种键值（Key-Value）数据库。相对于关系型数据库（比如 MySQL），Redis 也被叫作非关系型数据库。</p>
-<p>Redis 中只包含“键”和“值”两部分，只能通过“键”来查询“值”。正是因为这样简单的存储结构，也让 Redis 的读写效率非常高。</p>
-<p>Redis 中，键的数据类型是字符串，但是为了丰富数据存储的方式，方便开发者使用，值的数据类型有很多，常用的数据类型有这样几种，它们分别是字符串、列表、字典、集合、有序集合。</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>支持存储一组数据，有两种实现方法，一种是压缩列表（ziplist），另一种是双向循环链表。</p>
-<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h2 id="有序集合"><a href="#有序集合" class="headerlink" title="有序集合"></a>有序集合</h2>
-        
-      </div>
-    </div>
+  </div>
+  <div class="article-entry">
+      <h1 id="auto-类型推导"><a href="#auto-类型推导" class="headerlink" title="auto 类型推导"></a>auto 类型推导</h1><p>自动推导类型, <font color="red">必须初始化</font></p>
+<p>使用auto，编译器会在<font color="red">编译期间</font>自动推导出变量的类型，不用我们手动指明变量的数据类型.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> name = value;</span><br></pre></td></tr></table></figure>
+<p>auto 仅仅是一个占位符，在编译器期间它会被真正的类型所替代。</p>
+<h2 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>  x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span>  <span class="keyword">auto</span> n = x;  <span class="comment">//n 为 const int ，auto 被推导为 int</span></span><br><span class="line"><span class="keyword">auto</span> f = n;      <span class="comment">//f 为 const int，auto 被推导为 int（const 属性被抛弃）</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> &amp;r1 = x;  <span class="comment">//r1 为 const int&amp; 类型，auto 被推导为 int</span></span><br><span class="line"><span class="keyword">auto</span> &amp;r2 = r1;  <span class="comment">//r1 为 const int&amp; 类型，auto 被推导为 const int 类型</span></span><br></pre></td></tr></table></figure>
+<p>总结 auto 和 const</p>
+<ul>
+<li>当类型不为引用时，auto 的推导结果将不保留表达式的 const 属性</li>
+<li>当类型为引用时，auto 的推导结果将保留表达式的 const 属性。</li>
+</ul>
+<h2 id="auto-的限制"><a href="#auto-的限制" class="headerlink" title="auto 的限制"></a>auto 的限制</h2><ul>
+<li>auto 不能在函数的参数中使用 (参数只是声明，没有定义，无法自动推导类型)</li>
+<li>auto 不能作用于类的非静态成员变量（也就是没有 static 关键字修饰的成员变量）中</li>
+<li>auto 关键字不能定义数组  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[] = <span class="string">"testauto"</span>;</span><br><span class="line"><span class="keyword">auto</span> str1[] = str;  <span class="comment">//arr 为数组，所以不能使用 auto</span></span><br></pre></td></tr></table></figure></li>
+<li>auto 不能作用于模板参数</li>
+</ul>
+<h2 id="auto-的引用场景"><a href="#auto-的引用场景" class="headerlink" title="auto 的引用场景"></a>auto 的引用场景</h2><p>主要用了auto自动推导类型的特点</p>
+<ul>
+<li>auto 定义迭代器 简化复杂迭代器的书写</li>
+<li>泛型编程 </li>
+</ul>
 
-  
-    </div>
-  
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
 
 
 
