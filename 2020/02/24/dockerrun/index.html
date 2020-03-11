@@ -8,19 +8,19 @@
 
 <title>
   
-    Hexo Deploy
+    docker 问题记录
   
 </title>
 
-<meta name="description" content="github issue">
+<meta name="description" content="问题记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo Deploy">
-<meta property="og:url" content="http://yoursite.com/2020/01/02/Github_Deploy/index.html">
+<meta property="og:title" content="docker 问题记录">
+<meta property="og:url" content="http://yoursite.com/2020/02/24/dockerrun/index.html">
 <meta property="og:site_name" content="Invoker">
-<meta property="og:description" content="github issue">
-<meta property="article:published_time" content="2020-01-01T18:44:00.000Z">
-<meta property="article:modified_time" content="2020-02-16T02:46:17.722Z">
-<meta property="article:tag" content="github issue">
+<meta property="og:description" content="问题记录">
+<meta property="article:published_time" content="2020-02-24T08:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-11T17:53:05.347Z">
+<meta property="article:tag" content="问题记录">
 <meta name="twitter:card" content="summary">
 
 
@@ -148,38 +148,77 @@
       
         <div style="max-width: 1000px">
       
-          <article id="post-Github_Deploy" class="article article-type-post">
+          <article id="post-dockerrun" class="article article-type-post">
   
     <h1 class="article-header">
-      Hexo Deploy
+      docker 问题记录
     </h1>
   
   
 
   <div class="article-info">
     <span class="article-date">
-  2020-01-02
+  2020-02-24
 </span>
 
     
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/github-issue/">github issue</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">问题记录</a></li></ul>
 	</span>
 
 
     
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github-issue/" rel="tag">github issue</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" rel="tag">问题记录</a></li></ul>
 	</span>
 
 
   </div>
   <div class="article-entry">
-      <h1 id="hexo-d-报错ERROR-Deploy-not-fount-git"><a href="#hexo-d-报错ERROR-Deploy-not-fount-git" class="headerlink" title="hexo d 报错ERROR Deploy not fount:git"></a>hexo d 报错ERROR Deploy not fount:git</h1><p>报错信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
+      <h1 id="docker-问题记录"><a href="#docker-问题记录" class="headerlink" title="docker 问题记录"></a>docker 问题记录</h1><h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><p>centos7.2 yum 安装docker，运行hello-world</p>
+<blockquote>
+<p>yum -y install docker<br>docker run hello-world</p>
+</blockquote>
+<p>发现docker有如下报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error response from daemon: oci runtime error: container_linux.go:247: starting container process caused &quot;write parent: broken pipe&quot;...</span><br></pre></td></tr></table></figure>
 
-<p>解决方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>1、通过uname -r命令查看你当前的内核版本</p>
+<blockquote>
+<p>uname -r</p>
+</blockquote>
+<p>2、更新yum 包到最新</p>
+<blockquote>
+<p>sudo yum update</p>
+</blockquote>
+<p>3、安装过旧版本, 先卸载旧版本</p>
+<blockquote>
+<p>sudo yum remove docker  docker-common docker-selinux dockesr-engine</p>
+</blockquote>
+<p>4、安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</p>
+<blockquote>
+<p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2</p>
+</blockquote>
+<p>5、设置yum 源</p>
+<blockquote>
+<p>sudo yum-config-manager –add-repo <a href="https://download.docker.com/linux/centos/docker-ce.repo" target="_blank" rel="noopener">https://download.docker.com/linux/centos/docker-ce.repo</a></p>
+</blockquote>
+<p>6、查看所有仓库中所有docker版本(可选)</p>
+<blockquote>
+<p>yum list docker-ce –showduplicates | sort -r</p>
+</blockquote>
+<p>7、安装docker</p>
+<blockquote>
+<p>sudo yum install docker-ce</p>
+</blockquote>
+<p>8、启动并加入开机启动</p>
+<blockquote>
+<p>sudo systemctl start docker<br>sudo systemctl enable docker</p>
+</blockquote>
+<p>9、验证安装是否成功</p>
+<blockquote>
+<p>docker version</p>
+</blockquote>
+
   </div>
   <footer class="article-footer">
     
