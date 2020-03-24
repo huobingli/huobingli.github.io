@@ -8,19 +8,19 @@
 
 <title>
   
-    侵入式和非侵入式
+    协程
   
 </title>
 
-<meta name="description" content="设计模式">
+<meta name="description" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="侵入式和非侵入式">
-<meta property="og:url" content="http://yoursite.com/2020/01/01/DesignPattern/index.html">
+<meta property="og:title" content="协程">
+<meta property="og:url" content="http://yoursite.com/2020/02/29/pyCoroutine/index.html">
 <meta property="og:site_name" content="Invoker">
-<meta property="og:description" content="设计模式">
-<meta property="article:published_time" content="2020-01-01T08:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-14T19:41:20.000Z">
-<meta property="article:tag" content="设计模式">
+<meta property="og:description" content="python">
+<meta property="article:published_time" content="2020-02-29T08:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-24T17:08:50.359Z">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
 
 
@@ -148,39 +148,49 @@
       
         <div style="max-width: 1000px">
       
-          <article id="post-DesignPattern" class="article article-type-post">
+          <article id="post-pyCoroutine" class="article article-type-post">
   
     <h1 class="article-header">
-      侵入式和非侵入式
+      协程
     </h1>
   
   
 
   <div class="article-info">
     <span class="article-date">
-  2020-01-01
+  2020-02-29
 </span>
 
     
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 	</span>
 
 
     
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
 	</span>
 
 
   </div>
   <div class="article-entry">
-      <h3 id="非侵入式设计"><a href="#非侵入式设计" class="headerlink" title="非侵入式设计"></a>非侵入式设计</h3><p>客户端的代码可能包含框架功能和客户端自己的功能。</p>
-<p>非侵入式设计则表现为客户端实现框架提供的接口。</p>
-<p>非侵入式设计则不然，之前写过的代码仍有价值。 </p>
-<h3 id="侵入式设计"><a href="#侵入式设计" class="headerlink" title="侵入式设计"></a>侵入式设计</h3><p>设计者将框架功能“推”给客户端，而非侵入式设计，则是设计者将客户端的功能“拿”到框架中用。</p>
-<p>侵入式设计有时候表现为客户端需要继承框架中的类</p>
-<p>侵入式设计带来的最大缺陷是，当你决定重构你的代码时，发现之前写过的代码只能扔掉。</p>
+      <h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>协程，又称微线程，纤程。<br>有点像多线程，但是在一个线程中执行</p>
+<h2 id="协程优势"><a href="#协程优势" class="headerlink" title="协程优势"></a>协程优势</h2><ul>
+<li><p>最大的优势就是协程极高的执行效率。因为子程序切换不是线程切换，而是由程序自身控制，因此，没有线程切换的开销，和多线程比，线程数量越多，协程的性能优势就越明显。</p>
+</li>
+<li><p>第二大优势就是不需要多线程的锁机制，因为只有一个线程，也不存在同时写变量冲突，在协程中控制共享资源不加锁，只需要判断状态就好了，所以执行效率比多线程高很多。</p>
+</li>
+</ul>
+<h2 id="协程的几个关键"><a href="#协程的几个关键" class="headerlink" title="协程的几个关键"></a>协程的几个关键</h2><p>event_loop 事件循环：程序开启一个无限的循环，程序员会把一些函数注册到事件循环上。当满足事件发生的时候，调用相应的协程函数。</p>
+<p>coroutine 协程：协程对象，指一个使用async关键字定义的函数，它的调用不会立即执行函数，而是会返回一个协程对象。协程对象需要注册到事件循环，由事件循环调用。</p>
+<p>task  任务：一个协程对象就是一个原生可以挂起的函数，任务则是对协程进一步封装，其中包含任务的各种状态。</p>
+<p>future： 代表将来执行或没有执行的任务的结果。它和task上没有本质的区别。有如下几个状态Pending、Running、Done、Cancelled</p>
+<p>async/await 关键字：python3.5 用于定义协程的关键字，async定义一个协程，await用于挂起阻塞的异步调用接口。</p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">display</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">1</span>) <span class="comment">#</span></span><br><span class="line">    print(num)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    coroutines = [display(num) <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取事件循环并将协程对象放入事件循环中</span></span><br><span class="line">    <span class="comment"># 创建事件循环</span></span><br><span class="line">    loop = asyncio.get_event_loop() </span><br><span class="line">    <span class="comment"># run_until_complete将协程注册到事件循环，并启动事件循环</span></span><br><span class="line">    loop.run_until_complete(asyncio.wait(coroutines)) </span><br><span class="line">    loop.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><p>协作式并发时可以将系统默认的事件循环替换为uvloop（基于著名的跨平台异步I/O库libuv实现的）提供的事件循环，这样会获得更好的性能</p>
+<p>做基于HTTP的网络编程，三方库aiohttp是不错的选择，它基于asyncio实现了异步的HTTP服务器和客户端。</p>
 
   </div>
   <footer class="article-footer">
