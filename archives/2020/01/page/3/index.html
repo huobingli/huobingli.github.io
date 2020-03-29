@@ -160,94 +160,63 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
-        <a href="/2020/01/04/Gopackage/" >
-  Go 包
+        <a href="/2020/01/04/static&const/" >
+  static与const 关键字
 </a>
 
       </h3>
       
 
       <div class="article-info">
-        <a href="/2020/01/04/Gopackage/"><span class="article-date">
+        <a href="/2020/01/04/static&const/"><span class="article-date">
   2020-01-04
 </span>
 </a>
         
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Go/">Go</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
 	</span>
 
 
         
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li></ul>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
 	</span>
 
 
       </div>
       <div class="article-entry">
         
-          <h1 id="Go-包的概念"><a href="#Go-包的概念" class="headerlink" title="Go 包的概念"></a>Go 包的概念</h1><p>Go语言是使用包来组织源代码的，包（package）是多个 Go 源码的集合，是一种高级的代码复用方案。Go语言中为我们提供了很多内置包，如 fmt、os、io 等。</p>
-<p>任何源代码文件必须属于某个包，同时源码文件的第一行有效代码必须是package pacakgeName 语句，通过该语句声明自己所在的包。</p>
-<h2 id="包的基本概念"><a href="#包的基本概念" class="headerlink" title="包的基本概念"></a>包的基本概念</h2><p>Go语言的包借助了目录树的组织形式，一般包的名称就是其源文件所在目录的名称，虽然Go语言没有强制要求包名必须和其所在的目录名同名，但还是建议包名和所在目录同名，这样结构更清晰。</p>
-<h2 id="包的习惯用法"><a href="#包的习惯用法" class="headerlink" title="包的习惯用法"></a>包的习惯用法</h2><ul>
-<li>包名一般是小写的，使用一个简短且有意义的名称。</li>
-<li>包名一般要和所在的目录同名，也可以不同，包名中不能包含- 等特殊符号。</li>
-<li>包一般使用域名作为目录名称，这样能保证包名的唯一性，比如 GitHub 项目的包一般会放到GOPATH/src/github.com/userName/projectName 目录下。</li>
-<li>包名为 main 的包为应用程序的入口包，编译不包含 main 包的源码文件时不会得到可执行文件。</li>
-<li>一个文件夹下的所有源码文件只能属于同一个包，同样属于同一个包的源码文件不能放在多个文件夹下。</li>
+          <h1 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h1><h2 id="static-的作用"><a href="#static-的作用" class="headerlink" title="static 的作用"></a>static 的作用</h2><pre><code>规定存储方式和作用域  </code></pre><h2 id="static-关键字修饰变量-函数"><a href="#static-关键字修饰变量-函数" class="headerlink" title="static 关键字修饰变量/函数"></a>static 关键字修饰变量/函数</h2><ul>
+<li><p>static 全局变量<br>  全局静态变量, 保存在静态存储区, 不初始化自动初始化0, 作用域本文件   </p>
+</li>
+<li><p>static 局部变量<br>  局部静态变量, 保存在静态存储区, 不初始化自动初始化0, 作用域本文件  </p>
+</li>
+<li><p>static 函数<br>  1、在函数返回类型前加static，函数就定义为静态函数。函数的定义和声明在默认情况下都是extern的，但静态函数只是在声明他的文件当中可见，不能被其他文件所用<br>  2、函数的实现使用static修饰，那么这个函数只可在本cpp内使用，不会同其他cpp中的同名函数引起冲突   </p>
+</li>
+<li><p>static 类成员变量<br>  1、类静态成员可以实现多个对象之间的数据共享，静态成员是类的所有对象中共享的成员,而不是某个对象的成员。<br>  2、使用静态数据成员还不会破坏隐藏的原则，即保证了安全性。<br>  3、对多个对象来说，静态数据成员只存储一处，供所有对象共用。<br>  4、静态成员变量的生命期不依赖于任何对象，为程序的生命周期<br>  5、可以通过类名直接访问公有静态成员变量, 可以通过对象名访问公有静态成员变量<br>  6、静态成员变量在类外单独分配空间<br>  7、静态成员变量在程序内部位于全局数据区 </p>
+</li>
+<li><p>static 类成员函数<br>  1、属于类的静态成员，不是对象成员<br>  2、实现中不能直接引用类中说明的非静态成员，可以引用类中说明的静态成员(出现”对非静态成员的非法引用”)<br>  3、静态成员函数中要引用非静态成员时，可通过对象来引用</p>
+</li>
 </ul>
-<h2 id="包的导入"><a href="#包的导入" class="headerlink" title="包的导入"></a>包的导入</h2><p>要在代码中引用其他包的内容，需要使用 import 关键字导入使用的包。具体语法如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"包1的路径"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"包2的路径"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"包 1 的路径"</span></span><br><span class="line">    <span class="string">"包 2 的路径"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
+<h1 id="const-关键字"><a href="#const-关键字" class="headerlink" title="const 关键字"></a>const 关键字</h1><p>不可为左值, 规定只读(不可更改)，在声明中使用</p>
 <ul>
-<li>import 导入语句通常放在源码文件开头包声明语句的下面；</li>
-<li>导入的包名需要使用双引号包裹起来；</li>
-<li>包名是从GOPATH/src/ 后开始计算的，使用/ 进行路径分隔。</li>
+<li>const 常量<br>  定义时就必须进行初始化，以后不能更改。</li>
+<li>const 形参<br>  func(const int a){};该形参在函数里不能改变</li>
+<li>const 修饰类成员变量<br>  构造函数对该数据成员赋值，任何函数不能对该成员变量赋值，</li>
+<li>const 修饰类成员函数<br>  该函数对成员变量只能进行只读操作，不能更新值</li>
+<li>const 引用<br>  常引用所引用的对象不能被更新, 作为形参传入时，调用函数中不修改其值，如果是对象，减少调用构造函数。拷贝构造参数使用常引用</li>
 </ul>
-<h2 id="包的导入路径"><a href="#包的导入路径" class="headerlink" title="包的导入路径"></a>包的导入路径</h2><h3 id="全路径导入"><a href="#全路径导入" class="headerlink" title="全路径导入"></a>全路径导入</h3><p>包的绝对路径就是GOROOT/src/或GOPATH/src/后面包的存放路径</p>
-<h3 id="相对路径导入"><a href="#相对路径导入" class="headerlink" title="相对路径导入"></a>相对路径导入</h3><p>相对路径</p>
-<p>GOPATH/src/lib/a<br>GOPATH/src/lib/b</p>
-<p>b中导入a</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相对路径</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"../a"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 全路径</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"lab/a"</span></span><br></pre></td></tr></table></figure>
+<h1 id="常量指针与指针常量"><a href="#常量指针与指针常量" class="headerlink" title="常量指针与指针常量"></a>常量指针与指针常量</h1><p>const char *p 和char const *p都表示 指向的内容不能改变。</p>
+<p>char * const p，就是将P声明为常指针，它的地址不能改变，是固定的，但是它的内容可以改变。</p>
+<p>主要看const 和”*“的位置<br>const在”*“左侧，修饰的是指针指向的内存数据，内存数据不能被改变<br>const在”*“右侧，修饰的是指针，指针不能被改变  </p>
+<pre><code><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> na = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p1 = &amp;na;</span><br><span class="line">*p1 = <span class="number">1</span>; <span class="comment">// 编译报错 error C3892: “p1”: 不能给常量赋值</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="包的引用格式"><a href="#包的引用格式" class="headerlink" title="包的引用格式"></a>包的引用格式</h2><h3 id="1-标准引用格式"><a href="#1-标准引用格式" class="headerlink" title="1) 标准引用格式"></a>1) 标准引用格式</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">int</span> na = <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> * <span class="keyword">const</span> p2 = &amp;na;</span><br><span class="line">*p2++; <span class="comment">// 编译报错 error C3892: “p2”: 不能给常量赋值</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//不需要加前缀 fmt.</span></span><br><span class="line">    fmt.Println(<span class="string">"hello go"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-自定义别名引用格式"><a href="#2-自定义别名引用格式" class="headerlink" title="2) 自定义别名引用格式"></a>2) 自定义别名引用格式</h3><p>在导入包的时候，我们还可以为导入的包设置别名，如下所示：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> F <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> F <span class="string">"fmt"</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//不需要加前缀 fmt.</span></span><br><span class="line">    F.Println(<span class="string">"hello go"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-省略引用格式"><a href="#3-省略引用格式" class="headerlink" title="3) 省略引用格式"></a>3) 省略引用格式</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> . <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
-<p>这种格式相当于把 fmt 包直接合并到当前程序中，在使用 fmt 包内的方法是可以不用加前缀fmt.，直接引用。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> . <span class="string">"fmt"</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//不需要加前缀 fmt.</span></span><br><span class="line">    Println(<span class="string">"hello go"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-匿名引用格式"><a href="#4-匿名引用格式" class="headerlink" title="4) 匿名引用格式"></a>4) 匿名引用格式</h3><p>在引用某个包时，如果只是希望执行包初始化的 init 函数，而不使用包内部的数据时，可以使用匿名引用格式，</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
-<p>匿名导入的包与其他方式导入的包一样都会被编译到可执行文件中。</p>
-<pre><code class="go"><span class="keyword">package</span> main
-<span class="keyword">import</span> (
-    _ <span class="string">"database/sql"</span>
-    <span class="string">"fmt"</span>
-)
-<span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {
-    fmt.Println(<span class="string">"hello go"</span>)
-}</code></pre>
-<p><b><font color="red">注意：</font></b></p>
-<ul>
-<li>一个包可以有多个 init 函数，包加载时会执行全部的 init 函数，但并不能保证执行顺序，所以不建议在一个包中放入多个 init 函数，将需要初始化的逻辑放到一个 init 函数里面。</li>
-<li>包不能出现环形引用的情况，比如包 a 引用了包 b，包 b 引用了包 c，如果包 c 又引用了包 a，则编译不能通过。</li>
-<li>包的重复引用是允许的，比如包 a 引用了包 b 和包 c，包 b 和包 c 都引用了包 d。这种场景相当于重复引用了 d，这种情况是允许的，并且 Go 编译器保证包 d 的 init 函数<br>只会执行一次。</li>
-</ul>
-<h2 id="包加载"><a href="#包加载" class="headerlink" title="包加载"></a>包加载</h2><p>Go语言包的初始化有如下特点：</p>
-<ul>
-<li>包初始化程序从 main 函数引用的包开始，逐级查找包的引用，直到找到没有引用其他包的包，最终生成一个包引用的有向无环图。</li>
-<li>Go 编译器会将有向无环图转换为一棵树，然后从树的叶子节点开始逐层向上对包进行初始化。</li>
-<li>单个包的初始化过程如上图所示，先初始化常量，然后是全局变量，最后执行包的 init 函数。</li>
-</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> na = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * <span class="keyword">const</span> p3 = &amp;na;</span><br><span class="line">*p3++;  <span class="comment">// 编译报错 error C3892: “p3”: 不能给常量赋值</span></span><br><span class="line">*p3 = <span class="number">1</span>; <span class="comment">// 编译报错 error C3892: “p3”: 不能给常量赋值</span></span><br></pre></td></tr></table></figure></code></pre><h1 id="const-和-static-一起用"><a href="#const-和-static-一起用" class="headerlink" title="const 和 static 一起用"></a>const 和 static 一起用</h1><p>const static 和 static const 一样</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> a1 = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">int</span> * pa = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>*&gt;(&amp;a1);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++*pa &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 没问题</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">int</span> a2 = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">int</span> * paa = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>*&gt;(&amp;a2);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++*paa &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 编译可以过，但运行时引发了异常: 写入访问权限冲突。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>TODO 和static有关 查看了汇编，还是有点问题<br><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/static_cast.png" alt=""></p>
 
         
       </div>
@@ -576,90 +545,6 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
-        <a href="/2020/01/02/lib&dll/" >
-  windows静态库和动态库
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/01/02/lib&dll/"><span class="article-date">
-  2020-01-02
-</span>
-</a>
-        
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
-	</span>
-
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <h1 id="动态链接库"><a href="#动态链接库" class="headerlink" title="动态链接库"></a>动态链接库</h1><p>动态链接库通常都不能直接运行，也不能接受消息。是一些独立的文件，其中包含能被可执行程序或者其他DLL调用来完成某项工作的函数。只有在其他模块调用动态链接库中的函数时，它才发挥作用。</p>
-<p>windows API中的所有函数都包含在DLL中。其中有3个最重要的DLL，</p>
-<ul>
-<li>Kernel32.dll 包含用于管理内存、进程和线程的各个函数；</li>
-<li>User32.dll 包含用于执行用户界面任务的各个函数（比如窗口创建和消息传递）</li>
-<li>GDI32.dll 包含用于画图和显示文本的各个函数</li>
-</ul>
-<p>静态库<br>函数和数据被编译进一个二进制文件（lib）。在使用静态库的情况下，在编译链接可执行文件时，链接器从库中复制这些函数和数据并把它们和应用程序的其他模块组合起来创建最终的可执行文件（exe）</p>
-<p>在使用动态库的时候，往往提供两个文件，一个引入库（lib）和一个dll。引入库包含被DLL导出的函数和变量的符号名，DLL包含实际的函数和数据。在编译链接可执行文件时，只需要链接引入库，DLL中的函数代码和数据并不复制到可执行文件中，在运行的时候，再去加载DLL,访问DLL中导出的函数。</p>
-<h2 id="使用好处"><a href="#使用好处" class="headerlink" title="使用好处"></a>使用好处</h2><ul>
-<li>可以采用多种变成语言编写</li>
-<li>增强产品功能</li>
-<li>二次开发</li>
-<li>简化项目</li>
-<li>节省磁盘空间内存</li>
-<li>有助于资源共享</li>
-<li>有助于实现应用程序本地化</li>
-</ul>
-<h2 id="加载方式"><a href="#加载方式" class="headerlink" title="加载方式"></a>加载方式</h2><ul>
-<li>隐式连接</li>
-<li>显示加载</li>
-</ul>
-<h2 id="dumpbin"><a href="#dumpbin" class="headerlink" title="dumpbin"></a>dumpbin</h2><p>看dll文件中定义的函数</p>
-<h2 id="隐式连接"><a href="#隐式连接" class="headerlink" title="隐式连接"></a>隐式连接</h2><h3 id="extern-和-declspec-dllimport-导入函数的区别"><a href="#extern-和-declspec-dllimport-导入函数的区别" class="headerlink" title="extern 和 _declspec(dllimport) 导入函数的区别"></a>extern 和 _declspec(dllimport) 导入函数的区别</h3><p>告诉编译器我们从动态链接库上加载的 运行效率更高</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// extern int add(int a, int b);</span></span><br><span class="line"><span class="comment">// extern int subtract(int a, int b);</span></span><br><span class="line"></span><br><span class="line">_declspec(dllimport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">_declspec(dllimport) <span class="function"><span class="keyword">int</span> <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="导出动态库函数"><a href="#导出动态库函数" class="headerlink" title="导出动态库函数"></a>导出动态库函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">_declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/libdll_1.png" alt=""></p>
-<h3 id="extern-“C”-的作用"><a href="#extern-“C”-的作用" class="headerlink" title="extern “C” 的作用"></a>extern “C” 的作用</h3><p>兼容C的风格, 导出函数名与原函数名相同, 不加这个会被编译器修改</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extern int add(int a, int b);</span></span><br><span class="line"><span class="comment">// extern int subtract(int a, int b);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/libdll_2.png" alt=""></p>
-<p>加_stdcall 又会导致导出函数名不同</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extern int add(int a, int b);</span></span><br><span class="line"><span class="comment">// extern int subtract(int a, int b);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> _stdcall <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> _stdcall <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/libdll_3.png" alt=""></p>
-<h2 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h2><h3 id="LoadLibrary"><a href="#LoadLibrary" class="headerlink" title="LoadLibrary"></a>LoadLibrary</h3><p>用于导入动态链接库</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HINSTANCE hInst;</span><br><span class="line">hInst = LoadLibrary(_T(<span class="string">"Dlltest.dll"</span>));</span><br></pre></td></tr></table></figure>
-
-<h3 id="FreeLibrary"><a href="#FreeLibrary" class="headerlink" title="FreeLibrary"></a>FreeLibrary</h3><p>释放动态链接库</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HINSTANCE hInst;</span><br><span class="line">hInst = LoadLibrary(_T(<span class="string">"Dlltest.dll"</span>));</span><br><span class="line">FreeLibrary(hInst);</span><br></pre></td></tr></table></figure>
-
-<h3 id="def文件"><a href="#def文件" class="headerlink" title="def文件"></a>def文件</h3><p>此文件可以修改到处函数名字<br>需要在DLL编译前，添加到 “链接器-&gt;输入-&gt;模块定义文件” 中.</p>
-<h3 id="MAKEINTRESOURCE"><a href="#MAKEINTRESOURCE" class="headerlink" title="MAKEINTRESOURCE()"></a>MAKEINTRESOURCE()</h3><h2 id="加载过多动态库会导致浪费"><a href="#加载过多动态库会导致浪费" class="headerlink" title="加载过多动态库会导致浪费"></a>加载过多动态库会导致浪费</h2>
-        
-      </div>
-    </div>
-
-  
-
-  
-  
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
         <a href="/2020/01/02/cctype/" >
   字符处理库
 </a>
@@ -749,6 +634,90 @@
 </tr>
 </tbody></table>
 
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/01/02/lib&dll/" >
+  windows静态库和动态库
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/01/02/lib&dll/"><span class="article-date">
+  2020-01-02
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="动态链接库"><a href="#动态链接库" class="headerlink" title="动态链接库"></a>动态链接库</h1><p>动态链接库通常都不能直接运行，也不能接受消息。是一些独立的文件，其中包含能被可执行程序或者其他DLL调用来完成某项工作的函数。只有在其他模块调用动态链接库中的函数时，它才发挥作用。</p>
+<p>windows API中的所有函数都包含在DLL中。其中有3个最重要的DLL，</p>
+<ul>
+<li>Kernel32.dll 包含用于管理内存、进程和线程的各个函数；</li>
+<li>User32.dll 包含用于执行用户界面任务的各个函数（比如窗口创建和消息传递）</li>
+<li>GDI32.dll 包含用于画图和显示文本的各个函数</li>
+</ul>
+<p>静态库<br>函数和数据被编译进一个二进制文件（lib）。在使用静态库的情况下，在编译链接可执行文件时，链接器从库中复制这些函数和数据并把它们和应用程序的其他模块组合起来创建最终的可执行文件（exe）</p>
+<p>在使用动态库的时候，往往提供两个文件，一个引入库（lib）和一个dll。引入库包含被DLL导出的函数和变量的符号名，DLL包含实际的函数和数据。在编译链接可执行文件时，只需要链接引入库，DLL中的函数代码和数据并不复制到可执行文件中，在运行的时候，再去加载DLL,访问DLL中导出的函数。</p>
+<h2 id="使用好处"><a href="#使用好处" class="headerlink" title="使用好处"></a>使用好处</h2><ul>
+<li>可以采用多种变成语言编写</li>
+<li>增强产品功能</li>
+<li>二次开发</li>
+<li>简化项目</li>
+<li>节省磁盘空间内存</li>
+<li>有助于资源共享</li>
+<li>有助于实现应用程序本地化</li>
+</ul>
+<h2 id="加载方式"><a href="#加载方式" class="headerlink" title="加载方式"></a>加载方式</h2><ul>
+<li>隐式连接</li>
+<li>显示加载</li>
+</ul>
+<h2 id="dumpbin"><a href="#dumpbin" class="headerlink" title="dumpbin"></a>dumpbin</h2><p>看dll文件中定义的函数</p>
+<h2 id="隐式连接"><a href="#隐式连接" class="headerlink" title="隐式连接"></a>隐式连接</h2><h3 id="extern-和-declspec-dllimport-导入函数的区别"><a href="#extern-和-declspec-dllimport-导入函数的区别" class="headerlink" title="extern 和 _declspec(dllimport) 导入函数的区别"></a>extern 和 _declspec(dllimport) 导入函数的区别</h3><p>告诉编译器我们从动态链接库上加载的 运行效率更高</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// extern int add(int a, int b);</span></span><br><span class="line"><span class="comment">// extern int subtract(int a, int b);</span></span><br><span class="line"></span><br><span class="line">_declspec(dllimport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">_declspec(dllimport) <span class="function"><span class="keyword">int</span> <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="导出动态库函数"><a href="#导出动态库函数" class="headerlink" title="导出动态库函数"></a>导出动态库函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">_declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/libdll_1.png" alt=""></p>
+<h3 id="extern-“C”-的作用"><a href="#extern-“C”-的作用" class="headerlink" title="extern “C” 的作用"></a>extern “C” 的作用</h3><p>兼容C的风格, 导出函数名与原函数名相同, 不加这个会被编译器修改</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extern int add(int a, int b);</span></span><br><span class="line"><span class="comment">// extern int subtract(int a, int b);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/libdll_2.png" alt=""></p>
+<p>加_stdcall 又会导致导出函数名不同</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extern int add(int a, int b);</span></span><br><span class="line"><span class="comment">// extern int subtract(int a, int b);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> _stdcall <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> _declspec(dllexport) <span class="function"><span class="keyword">int</span> _stdcall <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/libdll_3.png" alt=""></p>
+<h2 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h2><h3 id="LoadLibrary"><a href="#LoadLibrary" class="headerlink" title="LoadLibrary"></a>LoadLibrary</h3><p>用于导入动态链接库</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HINSTANCE hInst;</span><br><span class="line">hInst = LoadLibrary(_T(<span class="string">"Dlltest.dll"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="FreeLibrary"><a href="#FreeLibrary" class="headerlink" title="FreeLibrary"></a>FreeLibrary</h3><p>释放动态链接库</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HINSTANCE hInst;</span><br><span class="line">hInst = LoadLibrary(_T(<span class="string">"Dlltest.dll"</span>));</span><br><span class="line">FreeLibrary(hInst);</span><br></pre></td></tr></table></figure>
+
+<h3 id="def文件"><a href="#def文件" class="headerlink" title="def文件"></a>def文件</h3><p>此文件可以修改到处函数名字<br>需要在DLL编译前，添加到 “链接器-&gt;输入-&gt;模块定义文件” 中.</p>
+<h3 id="MAKEINTRESOURCE"><a href="#MAKEINTRESOURCE" class="headerlink" title="MAKEINTRESOURCE()"></a>MAKEINTRESOURCE()</h3><h2 id="加载过多动态库会导致浪费"><a href="#加载过多动态库会导致浪费" class="headerlink" title="加载过多动态库会导致浪费"></a>加载过多动态库会导致浪费</h2>
         
       </div>
     </div>

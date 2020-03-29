@@ -529,6 +529,83 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
+        <a href="/2020/01/04/GoMakeNew/" >
+  Go make和new关键字
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/01/04/GoMakeNew/"><span class="article-date">
+  2020-01-04
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Go/">Go</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="Go-new和make的区别与实现"><a href="#Go-new和make的区别与实现" class="headerlink" title="Go new和make的区别与实现"></a>Go new和make的区别与实现</h1><h2 id="new-的实现"><a href="#new-的实现" class="headerlink" title="new 的实现"></a>new 的实现</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The new built-in function allocates memory. The first argument is a type,</span></span><br><span class="line"><span class="comment">// not a value, and the value returned is a pointer to a newly</span></span><br><span class="line"><span class="comment">// allocated zero value of that type.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">new</span><span class="params">(Type)</span> *<span class="title">Type</span></span></span><br></pre></td></tr></table></figure>
+
+<p>new 函数只接受一个参数，这个参数是一个类型，并且返回一个指向该类型内存地址的指针。分配的内存置为零，也就是类型的零值。</p>
+<p>为基础类型分配空间</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> sum *<span class="keyword">int</span></span><br><span class="line">	sum = <span class="built_in">new</span>(<span class="keyword">int</span>) <span class="comment">//分配空间</span></span><br><span class="line">    fmt.Println(*sum) <span class="comment">// 输出0 会默认置零</span></span><br><span class="line">    </span><br><span class="line">	*sum = <span class="number">100</span></span><br><span class="line">	fmt.Println(*sum) <span class="comment">// 输出100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为自定义类型分配空间</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">   name <span class="keyword">string</span></span><br><span class="line">   age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s *Student</span><br><span class="line">s = <span class="built_in">new</span>(Student) <span class="comment">// 分配空间</span></span><br><span class="line">s.name =<span class="string">"dequan"</span> </span><br><span class="line">fmt.Println(s)   <span class="comment">// 输出&amp;&#123;dequan 0&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="make-的实现"><a href="#make-的实现" class="headerlink" title="make 的实现"></a>make 的实现</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The make built-in function allocates and initializes an object of type</span></span><br><span class="line"><span class="comment">// slice, map, or chan (only). Like new, the first argument is a type, not a</span></span><br><span class="line"><span class="comment">// value. Unlike new, make's return type is the same as the type of its</span></span><br><span class="line"><span class="comment">// argument, not a pointer to it. The specification of the result depends on</span></span><br><span class="line"><span class="comment">// the type:</span></span><br><span class="line"><span class="comment">// Slice: The size specifies the length. The capacity of the slice is</span></span><br><span class="line"><span class="comment">// equal to its length. A second integer argument may be provided to</span></span><br><span class="line"><span class="comment">// specify a different capacity; it must be no smaller than the</span></span><br><span class="line"><span class="comment">// length, so make([]int, 0, 10) allocates a slice of length 0 and</span></span><br><span class="line"><span class="comment">// capacity 10.</span></span><br><span class="line"><span class="comment">// Map: An empty map is allocated with enough space to hold the</span></span><br><span class="line"><span class="comment">// specified number of elements. The size may be omitted, in which case</span></span><br><span class="line"><span class="comment">// a small starting size is allocated.</span></span><br><span class="line"><span class="comment">// Channel: The channel's buffer is initialized with the specified</span></span><br><span class="line"><span class="comment">// buffer capacity. If zero, or the size is omitted, the channel is</span></span><br><span class="line"><span class="comment">// unbuffered.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">make</span><span class="params">(t Type, size ...IntegerType)</span> <span class="title">Type</span></span></span><br></pre></td></tr></table></figure>
+
+<p>make 也是用于内存分配的，但是和 new 不同，它只用于 chan、map 以及 slice 的内存创建，而且它返回的类型就是这三个类型本身，而不是他们的指针类型，因为这三种类型就是引用类型，所以就没有必要返回他们的指针了。</p>
+<h2 id="new-和-make-区别："><a href="#new-和-make-区别：" class="headerlink" title="new 和 make 区别："></a>new 和 make 区别：</h2><table>
+<thead>
+<tr>
+<th>区别</th>
+<th>new</th>
+<th>make</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可分配的数据类型</td>
+<td>任意类型</td>
+<td>slice、map、chan</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回指针 *Type</td>
+<td>返回引用 Type</td>
+</tr>
+<tr>
+<td>初始化</td>
+<td>清零</td>
+<td>分配后初始化</td>
+</tr>
+</tbody></table>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
         <a href="/2020/01/04/GoError/" >
   Go 常见问题
 </a>
@@ -619,83 +696,6 @@
 
 <p>channel</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	c &lt;- <span class="number">1</span></span><br><span class="line">	c &lt;- <span class="number">2</span></span><br><span class="line">	c &lt;- <span class="number">3</span></span><br><span class="line">	<span class="built_in">close</span>(c)</span><br><span class="line">&#125;()</span><br><span class="line"><span class="keyword">for</span> v := <span class="keyword">range</span> c &#123;</span><br><span class="line">	fmt.Println(v)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-      </div>
-    </div>
-
-  
-
-  
-  
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2020/01/04/GoMakeNew/" >
-  Go make和new关键字
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/01/04/GoMakeNew/"><span class="article-date">
-  2020-01-04
-</span>
-</a>
-        
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Go/">Go</a></li></ul>
-	</span>
-
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <h1 id="Go-new和make的区别与实现"><a href="#Go-new和make的区别与实现" class="headerlink" title="Go new和make的区别与实现"></a>Go new和make的区别与实现</h1><h2 id="new-的实现"><a href="#new-的实现" class="headerlink" title="new 的实现"></a>new 的实现</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The new built-in function allocates memory. The first argument is a type,</span></span><br><span class="line"><span class="comment">// not a value, and the value returned is a pointer to a newly</span></span><br><span class="line"><span class="comment">// allocated zero value of that type.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">new</span><span class="params">(Type)</span> *<span class="title">Type</span></span></span><br></pre></td></tr></table></figure>
-
-<p>new 函数只接受一个参数，这个参数是一个类型，并且返回一个指向该类型内存地址的指针。分配的内存置为零，也就是类型的零值。</p>
-<p>为基础类型分配空间</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> sum *<span class="keyword">int</span></span><br><span class="line">	sum = <span class="built_in">new</span>(<span class="keyword">int</span>) <span class="comment">//分配空间</span></span><br><span class="line">    fmt.Println(*sum) <span class="comment">// 输出0 会默认置零</span></span><br><span class="line">    </span><br><span class="line">	*sum = <span class="number">100</span></span><br><span class="line">	fmt.Println(*sum) <span class="comment">// 输出100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>为自定义类型分配空间</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">   name <span class="keyword">string</span></span><br><span class="line">   age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s *Student</span><br><span class="line">s = <span class="built_in">new</span>(Student) <span class="comment">// 分配空间</span></span><br><span class="line">s.name =<span class="string">"dequan"</span> </span><br><span class="line">fmt.Println(s)   <span class="comment">// 输出&amp;&#123;dequan 0&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="make-的实现"><a href="#make-的实现" class="headerlink" title="make 的实现"></a>make 的实现</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The make built-in function allocates and initializes an object of type</span></span><br><span class="line"><span class="comment">// slice, map, or chan (only). Like new, the first argument is a type, not a</span></span><br><span class="line"><span class="comment">// value. Unlike new, make's return type is the same as the type of its</span></span><br><span class="line"><span class="comment">// argument, not a pointer to it. The specification of the result depends on</span></span><br><span class="line"><span class="comment">// the type:</span></span><br><span class="line"><span class="comment">// Slice: The size specifies the length. The capacity of the slice is</span></span><br><span class="line"><span class="comment">// equal to its length. A second integer argument may be provided to</span></span><br><span class="line"><span class="comment">// specify a different capacity; it must be no smaller than the</span></span><br><span class="line"><span class="comment">// length, so make([]int, 0, 10) allocates a slice of length 0 and</span></span><br><span class="line"><span class="comment">// capacity 10.</span></span><br><span class="line"><span class="comment">// Map: An empty map is allocated with enough space to hold the</span></span><br><span class="line"><span class="comment">// specified number of elements. The size may be omitted, in which case</span></span><br><span class="line"><span class="comment">// a small starting size is allocated.</span></span><br><span class="line"><span class="comment">// Channel: The channel's buffer is initialized with the specified</span></span><br><span class="line"><span class="comment">// buffer capacity. If zero, or the size is omitted, the channel is</span></span><br><span class="line"><span class="comment">// unbuffered.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">make</span><span class="params">(t Type, size ...IntegerType)</span> <span class="title">Type</span></span></span><br></pre></td></tr></table></figure>
-
-<p>make 也是用于内存分配的，但是和 new 不同，它只用于 chan、map 以及 slice 的内存创建，而且它返回的类型就是这三个类型本身，而不是他们的指针类型，因为这三种类型就是引用类型，所以就没有必要返回他们的指针了。</p>
-<h2 id="new-和-make-区别："><a href="#new-和-make-区别：" class="headerlink" title="new 和 make 区别："></a>new 和 make 区别：</h2><table>
-<thead>
-<tr>
-<th>区别</th>
-<th>new</th>
-<th>make</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>可分配的数据类型</td>
-<td>任意类型</td>
-<td>slice、map、chan</td>
-</tr>
-<tr>
-<td>返回值</td>
-<td>返回指针 *Type</td>
-<td>返回引用 Type</td>
-</tr>
-<tr>
-<td>初始化</td>
-<td>清零</td>
-<td>分配后初始化</td>
-</tr>
-</tbody></table>
-
         
       </div>
     </div>
@@ -1002,77 +1002,6 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
-        <a href="/2020/01/04/static&const/" >
-  static与const 关键字
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/01/04/static&const/"><span class="article-date">
-  2020-01-04
-</span>
-</a>
-        
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
-	</span>
-
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <h1 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h1><h2 id="static-的作用"><a href="#static-的作用" class="headerlink" title="static 的作用"></a>static 的作用</h2><pre><code>规定存储方式和作用域  </code></pre><h2 id="static-关键字修饰变量-函数"><a href="#static-关键字修饰变量-函数" class="headerlink" title="static 关键字修饰变量/函数"></a>static 关键字修饰变量/函数</h2><ul>
-<li><p>static 全局变量<br>  全局静态变量, 保存在静态存储区, 不初始化自动初始化0, 作用域本文件   </p>
-</li>
-<li><p>static 局部变量<br>  局部静态变量, 保存在静态存储区, 不初始化自动初始化0, 作用域本文件  </p>
-</li>
-<li><p>static 函数<br>  1、在函数返回类型前加static，函数就定义为静态函数。函数的定义和声明在默认情况下都是extern的，但静态函数只是在声明他的文件当中可见，不能被其他文件所用<br>  2、函数的实现使用static修饰，那么这个函数只可在本cpp内使用，不会同其他cpp中的同名函数引起冲突   </p>
-</li>
-<li><p>static 类成员变量<br>  1、类静态成员可以实现多个对象之间的数据共享，静态成员是类的所有对象中共享的成员,而不是某个对象的成员。<br>  2、使用静态数据成员还不会破坏隐藏的原则，即保证了安全性。<br>  3、对多个对象来说，静态数据成员只存储一处，供所有对象共用。<br>  4、静态成员变量的生命期不依赖于任何对象，为程序的生命周期<br>  5、可以通过类名直接访问公有静态成员变量, 可以通过对象名访问公有静态成员变量<br>  6、静态成员变量在类外单独分配空间<br>  7、静态成员变量在程序内部位于全局数据区 </p>
-</li>
-<li><p>static 类成员函数<br>  1、属于类的静态成员，不是对象成员<br>  2、实现中不能直接引用类中说明的非静态成员，可以引用类中说明的静态成员(出现”对非静态成员的非法引用”)<br>  3、静态成员函数中要引用非静态成员时，可通过对象来引用</p>
-</li>
-</ul>
-<h1 id="const-关键字"><a href="#const-关键字" class="headerlink" title="const 关键字"></a>const 关键字</h1><p>不可为左值, 规定只读(不可更改)，在声明中使用</p>
-<ul>
-<li>const 常量<br>  定义时就必须进行初始化，以后不能更改。</li>
-<li>const 形参<br>  func(const int a){};该形参在函数里不能改变</li>
-<li>const 修饰类成员变量<br>  构造函数对该数据成员赋值，任何函数不能对该成员变量赋值，</li>
-<li>const 修饰类成员函数<br>  该函数对成员变量只能进行只读操作，不能更新值</li>
-<li>const 引用<br>  常引用所引用的对象不能被更新, 作为形参传入时，调用函数中不修改其值，如果是对象，减少调用构造函数。拷贝构造参数使用常引用</li>
-</ul>
-<h1 id="常量指针与指针常量"><a href="#常量指针与指针常量" class="headerlink" title="常量指针与指针常量"></a>常量指针与指针常量</h1><p>const char *p 和char const *p都表示 指向的内容不能改变。</p>
-<p>char * const p，就是将P声明为常指针，它的地址不能改变，是固定的，但是它的内容可以改变。</p>
-<p>主要看const 和”*“的位置<br>const在”*“左侧，修饰的是指针指向的内存数据，内存数据不能被改变<br>const在”*“右侧，修饰的是指针，指针不能被改变  </p>
-<pre><code><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> na = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p1 = &amp;na;</span><br><span class="line">*p1 = <span class="number">1</span>; <span class="comment">// 编译报错 error C3892: “p1”: 不能给常量赋值</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">int</span> na = <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">int</span> * <span class="keyword">const</span> p2 = &amp;na;</span><br><span class="line">*p2++; <span class="comment">// 编译报错 error C3892: “p2”: 不能给常量赋值</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> na = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * <span class="keyword">const</span> p3 = &amp;na;</span><br><span class="line">*p3++;  <span class="comment">// 编译报错 error C3892: “p3”: 不能给常量赋值</span></span><br><span class="line">*p3 = <span class="number">1</span>; <span class="comment">// 编译报错 error C3892: “p3”: 不能给常量赋值</span></span><br></pre></td></tr></table></figure></code></pre><h1 id="const-和-static-一起用"><a href="#const-和-static-一起用" class="headerlink" title="const 和 static 一起用"></a>const 和 static 一起用</h1><p>const static 和 static const 一样</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> a1 = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">int</span> * pa = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>*&gt;(&amp;a1);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++*pa &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 没问题</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">int</span> a2 = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">int</span> * paa = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>*&gt;(&amp;a2);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++*paa &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 编译可以过，但运行时引发了异常: 写入访问权限冲突。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>TODO 和static有关 查看了汇编，还是有点问题<br><img src="https://raw.githubusercontent.com/huobingli/huobingli.github.io/master/img/static_cast.png" alt=""></p>
-
-        
-      </div>
-    </div>
-
-  
-
-  
-  
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
         <a href="/2020/01/04/Gojson/" >
   Go json解析
 </a>
@@ -1103,6 +1032,89 @@
           <h1 id="json解析"><a href="#json解析" class="headerlink" title="json解析"></a>json解析</h1><p>Json(Javascript Object Nanotation)是一种数据交换格式，常用于前后端数据传输。任意一端将数据转换成json 字符串，另一端再将该字符串解析成相应的数据结构。</p>
 <h2 id="json-Marshal"><a href="#json-Marshal" class="headerlink" title="json.Marshal"></a>json.Marshal</h2><p>将数据编码成json字符串</p>
 <h2 id="json-Unmarshal"><a href="#json-Unmarshal" class="headerlink" title="json.Unmarshal"></a>json.Unmarshal</h2><p>将json字符串解码到相应的数据结构</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/01/04/Gocommand/" >
+  Go 命令
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/01/04/Gocommand/"><span class="article-date">
+  2020-01-04
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Go/">Go</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h2 id="go-build"><a href="#go-build" class="headerlink" title="go build"></a>go build</h2><p>1、go build 无参数<br>生成包名文件</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> build</span><br></pre></td></tr></table></figure>
+
+<p>2、go build +文件列表  </p>
+<pre><code class="go"><span class="keyword">go</span> build main.<span class="keyword">go</span> lib1.<span class="keyword">go</span></code></pre>
+<p>使用”go build+文件列表”方式编译时，可执行文件默认选择文件列表中第一个源码文件作为可执行文件名输出。</p>
+<p>3、go build+包</p>
+<p>在设置 GOPATH 后，可以直接根据包名进行编译，即便包内文件被增（加）删（除）也不影响编译指令。</p>
+<p>go build 编译参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-v</td>
+<td>编译时显示包名</td>
+</tr>
+<tr>
+<td>-p n</td>
+<td>开启并发编译，默认情况下该值为 CPU 逻辑核数</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>强制重新构建</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>打印编译时会用到的所有命令，但不真正执行</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>打印编译时会用到的所有命令</td>
+</tr>
+<tr>
+<td>-race</td>
+<td>开启竞态检测</td>
+</tr>
+</tbody></table>
+<h2 id="go-clean"><a href="#go-clean" class="headerlink" title="go clean"></a>go clean</h2><p>会清除掉编译过程中产生的一些文件。在 Java 中通常是 .class 文件，而在Go语言中通常是上面我们所列举的那些文件。</p>
 
         
       </div>
