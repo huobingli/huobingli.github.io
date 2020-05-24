@@ -243,7 +243,7 @@
     <div class="post-list-item article">
       <h3 class="article-header">
         <a href="/2020/04/30/Linuxcmd/" >
-  linux 命令
+  linux 笔记
 </a>
 
       </h3>
@@ -271,6 +271,31 @@
         
           <h1 id="linux-命令"><a href="#linux-命令" class="headerlink" title="linux 命令"></a>linux 命令</h1><p>查看内核版本</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br><span class="line"></span><br><span class="line">cat &#x2F;proc&#x2F;version</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux-磁盘管理"><a href="#Linux-磁盘管理" class="headerlink" title="Linux  磁盘管理"></a>Linux  磁盘管理</h2><h3 id="linux文件颜色的含义："><a href="#linux文件颜色的含义：" class="headerlink" title="linux文件颜色的含义："></a>linux文件颜色的含义：</h3><ul>
+<li>蓝色 代表目录 </li>
+<li>绿色 代表可执行文件 </li>
+<li>红色 表示压缩文件 </li>
+<li>浅蓝色 表示链接文件 </li>
+<li>灰色 表示其他文件 </li>
+<li>红色闪烁 表示链接的文件有问题了 </li>
+<li>黄色 表示设备文件 </li>
+</ul>
+<p>-：普通文件 d：目录文件 l：链接文件 b：块设备文件 c：字符设备文件 p：管道文件 </p>
+<h3 id="df：列出文件系统的整体磁盘使用情况"><a href="#df：列出文件系统的整体磁盘使用情况" class="headerlink" title="df：列出文件系统的整体磁盘使用情况"></a>df：列出文件系统的整体磁盘使用情况</h3><h3 id="du：列出目录所占空间"><a href="#du：列出目录所占空间" class="headerlink" title="du：列出目录所占空间"></a>du：列出目录所占空间</h3><ul>
+<li>du -sh   显示当前目录大小   </li>
+<li>du –sh /   显示/目录下的所有目录大小 </li>
+</ul>
+<h2 id="Linux-用户管理"><a href="#Linux-用户管理" class="headerlink" title="Linux  用户管理"></a>Linux  用户管理</h2><h2 id="Linux-文件权限"><a href="#Linux-文件权限" class="headerlink" title="Linux  文件权限"></a>Linux  文件权限</h2><p>分为 普通文件、目录、字符设备文件、块设备文件、符号链接文件等</p>
+<p>文件权限<br>用ll 查看文件</p>
+<ul>
+<li>第 1 个字符表示一种特殊的文件类型   </li>
+<li>第2～4 个字符用来确定文件的用户(user)权限   </li>
+<li>第5～7 个字符用来确定文件的组(group)权限   </li>
+<li>第8～10 个字符用来确定文件的其它用户(other user，既不是文件所有者，也不是组成员的用户)的权限。</li>
+</ul>
+<p>2、5、8 个字符是用来控制文件的读权限的，该位字符为 r 表示允许用户、组成员或其它人可从该文件 中读取数据。短线“-”则表示不允许该成员读取数据。与此类似，3、6、9 位的字符控制文件的写权 限，该位若为 w 表示允许写，若为“-”表示不允许写。4、7、10 位的字符用来控制文件的制造权限， 该位若为 x 表示允许执行，若为“-”表示不允许执行。   </p>
+
         
       </div>
     </div>
